@@ -174,33 +174,33 @@ def create_cable_management_excel(filename="Gestion_Chemins_Cables.xlsx"):
 
     # Données d'exemple pour l'assignation
     sample_assign = [
-        ["W001", "=VLOOKUP(A2,Câbles!A:H,2,FALSE)", "=VLOOKUP(A2,Câbles!A:H,3,FALSE)", "A/B/D",
-         "=LEN(D2)-LEN(SUBSTITUTE(D2,\"/\",\"\"))+1", "=VLOOKUP(A2,Câbles!A:H,8,FALSE)",
-         "=SUMPRODUCT(--(LEN(D2)>0), VLOOKUP(LEFT(D2,1),Chemins_Cables!A:E,5,FALSE))",
+        ["W001", "=IFERROR(VLOOKUP(A2,Câbles!$A:$H,2,FALSE),\"\")", "=IFERROR(VLOOKUP(A2,Câbles!$A:$H,3,FALSE),\"\")", "A/B/D",
+         "=LEN(D2)-LEN(SUBSTITUTE(D2,\"/\",\"\"))+1", "=IFERROR(VLOOKUP(A2,Câbles!$A:$H,8,FALSE),\"\")",
+         "=SUM(IFERROR(VLOOKUP(TRIM(MID(SUBSTITUTE(D2,\"/\",REPT(\" \",99)),(ROW(INDIRECT(\"1:\"&(LEN(D2)-LEN(SUBSTITUTE(D2,\"/\",\"\"))+1)))-1)*99+1,99)),Chemins_Cables!$A:$E,5,FALSE),0))",
          "=IF(A2<>\"\",\"Assigné\",\"Non assigné\")"],
-        ["W002", "=VLOOKUP(A3,Câbles!A:H,2,FALSE)", "=VLOOKUP(A3,Câbles!A:H,3,FALSE)", "A/C/E",
-         "=LEN(D3)-LEN(SUBSTITUTE(D3,\"/\",\"\"))+1", "=VLOOKUP(A3,Câbles!A:H,8,FALSE)",
-         "=SUMPRODUCT(--(LEN(D3)>0), VLOOKUP(LEFT(D3,1),Chemins_Cables!A:E,5,FALSE))",
+        ["W002", "=IFERROR(VLOOKUP(A3,Câbles!$A:$H,2,FALSE),\"\")", "=IFERROR(VLOOKUP(A3,Câbles!$A:$H,3,FALSE),\"\")", "A/C/E",
+         "=LEN(D3)-LEN(SUBSTITUTE(D3,\"/\",\"\"))+1", "=IFERROR(VLOOKUP(A3,Câbles!$A:$H,8,FALSE),\"\")",
+         "=SUM(IFERROR(VLOOKUP(TRIM(MID(SUBSTITUTE(D3,\"/\",REPT(\" \",99)),(ROW(INDIRECT(\"1:\"&(LEN(D3)-LEN(SUBSTITUTE(D3,\"/\",\"\"))+1)))-1)*99+1,99)),Chemins_Cables!$A:$E,5,FALSE),0))",
          "=IF(A3<>\"\",\"Assigné\",\"Non assigné\")"],
-        ["W003", "=VLOOKUP(A4,Câbles!A:H,2,FALSE)", "=VLOOKUP(A4,Câbles!A:H,3,FALSE)", "B/C/D/E",
-         "=LEN(D4)-LEN(SUBSTITUTE(D4,\"/\",\"\"))+1", "=VLOOKUP(A4,Câbles!A:H,8,FALSE)",
-         "=SUMPRODUCT(--(LEN(D4)>0), VLOOKUP(LEFT(D4,1),Chemins_Cables!A:E,5,FALSE))",
+        ["W003", "=IFERROR(VLOOKUP(A4,Câbles!$A:$H,2,FALSE),\"\")", "=IFERROR(VLOOKUP(A4,Câbles!$A:$H,3,FALSE),\"\")", "B/C/D/E",
+         "=LEN(D4)-LEN(SUBSTITUTE(D4,\"/\",\"\"))+1", "=IFERROR(VLOOKUP(A4,Câbles!$A:$H,8,FALSE),\"\")",
+         "=SUM(IFERROR(VLOOKUP(TRIM(MID(SUBSTITUTE(D4,\"/\",REPT(\" \",99)),(ROW(INDIRECT(\"1:\"&(LEN(D4)-LEN(SUBSTITUTE(D4,\"/\",\"\"))+1)))-1)*99+1,99)),Chemins_Cables!$A:$E,5,FALSE),0))",
          "=IF(A4<>\"\",\"Assigné\",\"Non assigné\")"],
-        ["W004", "=VLOOKUP(A5,Câbles!A:H,2,FALSE)", "=VLOOKUP(A5,Câbles!A:H,3,FALSE)", "A/B",
-         "=LEN(D5)-LEN(SUBSTITUTE(D5,\"/\",\"\"))+1", "=VLOOKUP(A5,Câbles!A:H,8,FALSE)",
-         "=SUMPRODUCT(--(LEN(D5)>0), VLOOKUP(LEFT(D5,1),Chemins_Cables!A:E,5,FALSE))",
+        ["W004", "=IFERROR(VLOOKUP(A5,Câbles!$A:$H,2,FALSE),\"\")", "=IFERROR(VLOOKUP(A5,Câbles!$A:$H,3,FALSE),\"\")", "A/B",
+         "=LEN(D5)-LEN(SUBSTITUTE(D5,\"/\",\"\"))+1", "=IFERROR(VLOOKUP(A5,Câbles!$A:$H,8,FALSE),\"\")",
+         "=SUM(IFERROR(VLOOKUP(TRIM(MID(SUBSTITUTE(D5,\"/\",REPT(\" \",99)),(ROW(INDIRECT(\"1:\"&(LEN(D5)-LEN(SUBSTITUTE(D5,\"/\",\"\"))+1)))-1)*99+1,99)),Chemins_Cables!$A:$E,5,FALSE),0))",
          "=IF(A5<>\"\",\"Assigné\",\"Non assigné\")"],
-        ["W005", "=VLOOKUP(A6,Câbles!A:H,2,FALSE)", "=VLOOKUP(A6,Câbles!A:H,3,FALSE)", "C/D/E",
-         "=LEN(D6)-LEN(SUBSTITUTE(D6,\"/\",\"\"))+1", "=VLOOKUP(A6,Câbles!A:H,8,FALSE)",
-         "=SUMPRODUCT(--(LEN(D6)>0), VLOOKUP(LEFT(D6,1),Chemins_Cables!A:E,5,FALSE))",
+        ["W005", "=IFERROR(VLOOKUP(A6,Câbles!$A:$H,2,FALSE),\"\")", "=IFERROR(VLOOKUP(A6,Câbles!$A:$H,3,FALSE),\"\")", "C/D/E",
+         "=LEN(D6)-LEN(SUBSTITUTE(D6,\"/\",\"\"))+1", "=IFERROR(VLOOKUP(A6,Câbles!$A:$H,8,FALSE),\"\")",
+         "=SUM(IFERROR(VLOOKUP(TRIM(MID(SUBSTITUTE(D6,\"/\",REPT(\" \",99)),(ROW(INDIRECT(\"1:\"&(LEN(D6)-LEN(SUBSTITUTE(D6,\"/\",\"\"))+1)))-1)*99+1,99)),Chemins_Cables!$A:$E,5,FALSE),0))",
          "=IF(A6<>\"\",\"Assigné\",\"Non assigné\")"],
-        ["W006", "=VLOOKUP(A7,Câbles!A:H,2,FALSE)", "=VLOOKUP(A7,Câbles!A:H,3,FALSE)", "A/C",
-         "=LEN(D7)-LEN(SUBSTITUTE(D7,\"/\",\"\"))+1", "=VLOOKUP(A7,Câbles!A:H,8,FALSE)",
-         "=SUMPRODUCT(--(LEN(D7)>0), VLOOKUP(LEFT(D7,1),Chemins_Cables!A:E,5,FALSE))",
+        ["W006", "=IFERROR(VLOOKUP(A7,Câbles!$A:$H,2,FALSE),\"\")", "=IFERROR(VLOOKUP(A7,Câbles!$A:$H,3,FALSE),\"\")", "A/C",
+         "=LEN(D7)-LEN(SUBSTITUTE(D7,\"/\",\"\"))+1", "=IFERROR(VLOOKUP(A7,Câbles!$A:$H,8,FALSE),\"\")",
+         "=SUM(IFERROR(VLOOKUP(TRIM(MID(SUBSTITUTE(D7,\"/\",REPT(\" \",99)),(ROW(INDIRECT(\"1:\"&(LEN(D7)-LEN(SUBSTITUTE(D7,\"/\",\"\"))+1)))-1)*99+1,99)),Chemins_Cables!$A:$E,5,FALSE),0))",
          "=IF(A7<>\"\",\"Assigné\",\"Non assigné\")"],
-        ["W007", "=VLOOKUP(A8,Câbles!A:H,2,FALSE)", "=VLOOKUP(A8,Câbles!A:H,3,FALSE)", "B/D",
-         "=LEN(D8)-LEN(SUBSTITUTE(D8,\"/\",\"\"))+1", "=VLOOKUP(A8,Câbles!A:H,8,FALSE)",
-         "=SUMPRODUCT(--(LEN(D8)>0), VLOOKUP(LEFT(D8,1),Chemins_Cables!A:E,5,FALSE))",
+        ["W007", "=IFERROR(VLOOKUP(A8,Câbles!$A:$H,2,FALSE),\"\")", "=IFERROR(VLOOKUP(A8,Câbles!$A:$H,3,FALSE),\"\")", "B/D",
+         "=LEN(D8)-LEN(SUBSTITUTE(D8,\"/\",\"\"))+1", "=IFERROR(VLOOKUP(A8,Câbles!$A:$H,8,FALSE),\"\")",
+         "=SUM(IFERROR(VLOOKUP(TRIM(MID(SUBSTITUTE(D8,\"/\",REPT(\" \",99)),(ROW(INDIRECT(\"1:\"&(LEN(D8)-LEN(SUBSTITUTE(D8,\"/\",\"\"))+1)))-1)*99+1,99)),Chemins_Cables!$A:$E,5,FALSE),0))",
          "=IF(A8<>\"\",\"Assigné\",\"Non assigné\")"]
     ]
 
@@ -255,14 +255,14 @@ def create_cable_management_excel(filename="Gestion_Chemins_Cables.xlsx"):
     # Formules pour les détails du chemin
     details_data = [
         ["ID Chemin", "=B3", ""],
-        ["Description", "=VLOOKUP(B3,Chemins_Cables!A:H,2,FALSE)", ""],
-        ["Largeur", "=VLOOKUP(B3,Chemins_Cables!A:H,3,FALSE)", "mm"],
-        ["Hauteur", "=VLOOKUP(B3,Chemins_Cables!A:H,4,FALSE)", "mm"],
-        ["Longueur", "=VLOOKUP(B3,Chemins_Cables!A:H,5,FALSE)", "m"],
-        ["Surface totale", "=VLOOKUP(B3,Chemins_Cables!A:H,6,FALSE)", "mm²"],
-        ["Capacité utilisable", "=VLOOKUP(B3,Chemins_Cables!A:H,7,FALSE)", "mm²"],
-        ["Taux de remplissage", "=VLOOKUP(B3,Chemins_Cables!A:H,8,FALSE)", "%"],
-        ["Nombre de câbles", "=COUNTIF(Assignation!D:D,\"*\"&B3&\"*\")", "pcs"]
+        ["Description",       "=IFERROR(VLOOKUP(B3,Chemins_Cables!$A:$H,2,FALSE), \"N/A\")", ""],
+        ["Largeur",           "=IFERROR(VLOOKUP(B3,Chemins_Cables!$A:$H,3,FALSE), 0)", "mm"],
+        ["Hauteur",           "=IFERROR(VLOOKUP(B3,Chemins_Cables!$A:$H,4,FALSE), 0)", "mm"],
+        ["Longueur",          "=IFERROR(VLOOKUP(B3,Chemins_Cables!$A:$H,5,FALSE), 0)", "m"],
+        ["Surface totale",    "=IFERROR(VLOOKUP(B3,Chemins_Cables!$A:$H,6,FALSE), 0)", "mm²"],
+        ["Capacité utilisable", "=IFERROR(VLOOKUP(B3,Chemins_Cables!$A:$H,7,FALSE), 0)", "mm²"],
+        ["Taux de remplissage", "=IFERROR(VLOOKUP(B3,Chemins_Cables!$A:$H,8,FALSE), 0)", "%"],
+        ["Nombre de câbles",  "=IFERROR(COUNTIF(Assignation!D:D,\"*\"&B3&\"*\"), 0)", "pcs"]
     ]
 
     for row, detail in enumerate(details_data, 7):
@@ -284,33 +284,15 @@ def create_cable_management_excel(filename="Gestion_Chemins_Cables.xlsx"):
         cell.fill = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
         cell.alignment = Alignment(horizontal='center')
 
-    # Simplification pour la liste des câbles - on va utiliser une approche plus directe
-    cable_formulas = [
-        [
-            '=IF(COUNTIF(Assignation!D:D,"*"&$B$3&"*")>=1,INDEX(Assignation!A:A,MATCH(TRUE,ISNUMBER(SEARCH($B$3,Assignation!D:D)),0)),"")'],
-        [
-            '=IF(COUNTIF(Assignation!D:D,"*"&$B$3&"*")>=2,INDEX(Assignation!A:A,MATCH(TRUE,ISNUMBER(SEARCH($B$3,Assignation!D:D)),0)+1),"")'],
-        [
-            '=IF(COUNTIF(Assignation!D:D,"*"&$B$3&"*")>=3,INDEX(Assignation!A:A,MATCH(TRUE,ISNUMBER(SEARCH($B$3,Assignation!D:D)),0)+2),"")']
-    ]
+    # Formule dynamique pour lister les câbles assignés (utilise la fonction FILTER)
+    ws_dashboard.cell(row=7, column=5, value='=IFERROR(_xlfn.FILTER(Assignation!$A$2:$A$100,ISNUMBER(SEARCH($B$3,Assignation!$D$2:$D$100)),""),"")')
 
-    # Pour simplifier, on va juste mettre des références directes
-    direct_cables = [
-        ["=IF(SEARCH($B$3,Assignation!D2,1)>0,Assignation!A2,\"\")",
-         "=IF(E7<>\"\",VLOOKUP(E7,Câbles!A:H,2,FALSE),\"\")", "=IF(E7<>\"\",VLOOKUP(E7,Câbles!A:H,8,FALSE),\"\")"],
-        ["=IF(ISERROR(SEARCH($B$3,Assignation!D3,1)),\"\",Assignation!A3)",
-         "=IF(E8<>\"\",VLOOKUP(E8,Câbles!A:H,2,FALSE),\"\")", "=IF(E8<>\"\",VLOOKUP(E8,Câbles!A:H,8,FALSE),\"\")"],
-        ["=IF(ISERROR(SEARCH($B$3,Assignation!D4,1)),\"\",Assignation!A4)",
-         "=IF(E9<>\"\",VLOOKUP(E9,Câbles!A:H,2,FALSE),\"\")", "=IF(E9<>\"\",VLOOKUP(E9,Câbles!A:H,8,FALSE),\"\")"],
-        ["=IF(ISERROR(SEARCH($B$3,Assignation!D5,1)),\"\",Assignation!A5)",
-         "=IF(E10<>\"\",VLOOKUP(E10,Câbles!A:H,2,FALSE),\"\")", "=IF(E10<>\"\",VLOOKUP(E10,Câbles!A:H,8,FALSE),\"\")"],
-        ["=IF(ISERROR(SEARCH($B$3,Assignation!D6,1)),\"\",Assignation!A6)",
-         "=IF(E11<>\"\",VLOOKUP(E11,Câbles!A:H,2,FALSE),\"\")", "=IF(E11<>\"\",VLOOKUP(E11,Câbles!A:H,8,FALSE),\"\")"]
-    ]
-
-    for row, cable_data in enumerate(direct_cables, 7):
-        for col, formula in enumerate(cable_data, 5):
-            ws_dashboard.cell(row=row, column=col, value=formula)
+    # Ajouter les formules de VLOOKUP pour les détails des câbles qui s'affichent dynamiquement
+    for row_num in range(7, 22):  # Préparer pour 15 câbles
+        # Formule pour le Type
+        ws_dashboard.cell(row=row_num, column=6, value=f'=IF(E{row_num}<>"",IFERROR(VLOOKUP(E{row_num},Câbles!$A:$H,2,FALSE),""),"")')
+        # Formule pour la Surface
+        ws_dashboard.cell(row=row_num, column=7, value=f'=IF(E{row_num}<>"",IFERROR(VLOOKUP(E{row_num},Câbles!$A:$H,8,FALSE),""),"")')
 
     # Ajuster la largeur des colonnes manuellement pour éviter les problèmes
     column_widths = {'A': 25, 'B': 20, 'C': 10, 'D': 5, 'E': 15, 'F': 20, 'G': 15}
@@ -658,9 +640,3 @@ if __name__ == "__main__":
 
     else:
         print("\n❌ Échec de la création. Vérifiez les erreurs ci-dessus.")
-
-
-
-
-
-
